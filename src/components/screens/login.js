@@ -9,7 +9,9 @@ class LoginScreen extends Component {
         super();
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            loading: false,
+            error: ""
         }
     }
 
@@ -19,9 +21,29 @@ class LoginScreen extends Component {
         this.setState(x);
     }
 
+    finished = (success) => {
+        this.setState({loading: false});
+        if(success){
+            this.setState({error: ""});
+        }else{
+            this.setState({error: "Incorrect Credentials"});
+        }
+    }
+
+    getGrades = (term, username, password) => {
+        this.setState({loading: true});
+        this.props.getGrades("Q3", username, password, (response) => this.finished(response));
+    }
+
     render(){
-        const {username, password} = this.state;
-        const {getGrades} = this.props;
+        const {username, password, loading, error} = this.state;
+        if(loading){
+            return(
+                <div className="login-form">
+                    <h1>Loading...</h1>
+                </div>
+            );
+        }
         return(
             <div className="login-form">
                 <h1>Alpine School District</h1>
@@ -31,7 +53,7 @@ class LoginScreen extends Component {
                 <input type="text" name="username" id="username" value={username} onChange={this.updateInput}/>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" value={password} onChange={this.updateInput}/>
-                <button onClick={() => getGrades("Q3", username, password)}>Log In</button>
+                <button onClick={() => this.getGrades("Q3", username, password)}>Log In</button>
             </div>
         )
     }

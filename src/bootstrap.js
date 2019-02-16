@@ -16,9 +16,7 @@ import './style/main.scss';
 function main() {
   ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
-      <BrowserRouter>
         <App />
-      </BrowserRouter>
     </Provider>
     , document.querySelector('.app-wrapper'));
 }
