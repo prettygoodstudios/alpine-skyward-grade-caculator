@@ -1,0 +1,45 @@
+$form-text-size: 1.2em;
+
+input{
+    display: block;
+    color: $dark-text-color;
+    font-size: $form-text-size;
+}
+label{
+    display: block;
+    color: $dark-text-color;
+    font-size: $form-text-size;
+}
+button{
+    background-color: $primary-color;
+    color: $white-color;
+    display: block;
+    padding: 10px;
+    font-size:  $form-text-size;
+    border: none;
+    margin: 10px 0px 10px 0px;
+    border: 4px solid $primary-color;
+
+    &:hover{
+        color: $primary-color;
+        background-color: $white-color;
+    }
+}
+
+.login-form{
+    margin: 50vh auto 0px auto;
+    max-width: 500px;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1, h3, p{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width:  400px){
+    .login-form{
+        max-width: 90%;
+    }
+}
