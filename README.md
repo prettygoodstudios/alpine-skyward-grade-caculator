@@ -1,5 +1,4 @@
-# React/Redux/Router Starter Project
+#Alpine School District Skyward Grade Calculator
+>  Grade calculator that automatically pulls in grades for Alpine School District students. 
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
-
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+*Built by Miguel Rust, Orem, UT.
