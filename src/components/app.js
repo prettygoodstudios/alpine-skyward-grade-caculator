@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Router, Switch, Route} from 'react-router-dom';
+//History
+import history from "../../history.js";
 //Screens
 import LoginScreen from "./screens/login";
+import GradesScreen from './screens/grades.js';
 
 
 export default class App extends Component {
@@ -9,11 +12,12 @@ export default class App extends Component {
     return (
       <div>
         <div className="push">
-          <BrowserRouter>
+          <Router history={history}>
             <Switch>
-              <Route path="/" component={LoginScreen} />
+              <Route exact path="/" component={LoginScreen} />
+              <Route path="/grades" component={GradesScreen} />
             </Switch>
-          </BrowserRouter>
+          </Router>
         </div>
         <div className="footer">
           <h3>Alpine School District</h3>

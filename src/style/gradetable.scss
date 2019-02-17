@@ -1,0 +1,27 @@
+.grade-table{
+    width: 100%;
+    thead{
+        background-color: $primary-color;
+        color: $white-color;
+    }
+    tfoot{
+        background-color: $primary-color;
+        color: $white-color;
+    }
+    tbody{
+        color: $dark-text-color;
+        tr:nth-child(2n+1){
+            background-color: $white-color;
+        }
+    }
+}
+
+.grade-container{
+    max-width: 500px;
+    margin: 100px auto 0px auto;
+
+    h1{
+        margin: 0px auto 20px auto;
+        text-align: center;
+    }
+}

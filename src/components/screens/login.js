@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
+import history from "../../../history";
+
+import Error from "../widgets/error";
 
 class LoginScreen extends Component {
 
@@ -25,6 +28,7 @@ class LoginScreen extends Component {
         this.setState({loading: false});
         if(success){
             this.setState({error: ""});
+            history.push("/grades");
         }else{
             this.setState({error: "Incorrect Credentials"});
         }
@@ -32,7 +36,11 @@ class LoginScreen extends Component {
 
     getGrades = (term, username, password) => {
         this.setState({loading: true});
-        this.props.getGrades("Q3", username, password, (response) => this.finished(response));
+        if(username != "" && password != ""){
+            this.props.getGrades("Q3", username, password, (response) => this.finished(response));
+        }else{
+            this.setState({error: "You must provide a username and password", loading: false});
+        }
     }
 
     render(){
@@ -54,6 +62,7 @@ class LoginScreen extends Component {
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" value={password} onChange={this.updateInput}/>
                 <button onClick={() => this.getGrades("Q3", username, password)}>Log In</button>
+                <Error error={error}/>
             </div>
         )
     }

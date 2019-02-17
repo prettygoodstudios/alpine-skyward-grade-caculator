@@ -7,14 +7,19 @@ export const getGrades = (term, userId, password, success) => {
     console.log("Hello World");
     return function(dispatch){
         axios.post("http://localhost:3010", {term: term, username: userId, password}).then(({data}) => {
-            dispatch({
-                type: GET_GRADES,
-                payload: data
-            });
-            success(true);
+            if(!data.error){
+                dispatch({
+                    type: GET_GRADES,
+                    payload: data
+                });
+                success(true);
+            }else{
+                success(false);
+            }
         }).catch((e) => {
-            console.log(e);
             success(false);
         });
     }
 }
+
+
