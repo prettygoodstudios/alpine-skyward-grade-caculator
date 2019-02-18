@@ -4,7 +4,17 @@ import {connect} from 'react-redux';
 //helpers
 import {calculateGrade} from '../../helpers/grades';
 
+import * as actions from "../../actions";
+import history from '../../../history';
+
 class GradesScreen extends Component {
+
+
+    getCourse = (course) => {
+        this.props.getCourse(course);
+        history.push("/course");
+    }
+
     render(){
         const {grades} = this.props;
 
@@ -29,7 +39,7 @@ class GradesScreen extends Component {
                                     <td>{period}</td>
                                     <td>{course}</td>
                                     <td>{instructor}</td>
-                                    <td>{calculateGrade(report)}</td>
+                                    <td><a onClick={() => this.getCourse(g)}>{calculateGrade(report)}</a></td>
                                 </tr>
                             )
                         })}
@@ -55,4 +65,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, null)(GradesScreen);
+export default connect(mapStateToProps, actions)(GradesScreen);

@@ -5,6 +5,7 @@ import history from "../../history.js";
 //Screens
 import LoginScreen from "./screens/login";
 import GradesScreen from './screens/grades.js';
+import CourseScreen from "./screens/course.js";
 
 
 export default class App extends Component {
@@ -16,6 +17,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" component={LoginScreen} />
               <Route path="/grades" component={GradesScreen} />
+              <Route path="/course" component={CourseScreen} />
             </Switch>
           </Router>
         </div>

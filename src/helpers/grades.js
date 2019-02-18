@@ -34,12 +34,6 @@ export const calculateGrade = (report) => {
         if(flagForMissingWeight && weight == "00"){
             trueWeight = (missingWieghtValue/trueTotalWieght);
         }
-        if(trueWeight == NaN || earned == NaN || !Number.isInteger(weight) ){
-            console.log("True Weight", trueWeight);
-            console.log("Total", total);
-            console.log("Total Points", totalPoints);
-            console.log("Earned", earned);
-        }
         if(earned && total){
             finalGrade += (parseFloat(earned)/parseFloat(total))*trueWeight;
         }

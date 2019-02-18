@@ -1,7 +1,8 @@
-import { GET_GRADES } from "../actions/types";
+import { GET_GRADES, GET_COURSE } from "../actions/types";
 
 const INIT_STATE = {
-    grades: {}
+    grades: {},
+    course: {}
 }
 
 export default function(state = INIT_STATE, action){
@@ -10,6 +11,11 @@ export default function(state = INIT_STATE, action){
             return {
                 ...state,
                 grades: action.payload
+            }
+        case GET_COURSE:
+            return {
+                ...state,
+                course: action.payload
             }
         default :
             return {
