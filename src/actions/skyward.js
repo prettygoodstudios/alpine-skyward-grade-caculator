@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_GRADES, GET_COURSE} from "./types";
+import {GET_GRADES, GET_COURSE, UPDATE_GRADE} from "./types";
 //import skyward  from 'skyward-rest';
 
 
@@ -19,6 +19,26 @@ export const getGrades = (term, userId, password, success) => {
         }).catch((e) => {
             success(false);
         });
+    }
+}
+
+export const updateGrade = ({course, categoryIndex, assignmentIndex, delta, result}) => {
+    return function(dispatch){
+        const {report} = course;
+        const assignment = report[categoryIndex].assignments[assignmentIndex];
+        if(assignment.score.earned + delta < 0){
+            result("You can not enter a score less than 0.");
+        }else{
+            dispatch({
+                type: UPDATE_GRADE,
+                payload: {
+                    categoryIndex,
+                    assignmentIndex,
+                    earned: assignment.score.earned + delta
+                }
+            });
+            result("Updated");
+        }
     }
 }
 

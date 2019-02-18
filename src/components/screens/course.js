@@ -30,7 +30,7 @@ const Category = ({category, weight, score, assignments, remainingWeight}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { assignments.map((a) => {
+                    { assignments.map((a, i) => {
                         const {date, title, score} = a;
                         const {earned, total} = score;
                         return(
@@ -39,7 +39,7 @@ const Category = ({category, weight, score, assignments, remainingWeight}) => {
                                 <td>{title}</td>
                                 <td><a onClick={() => alert("Your Earned "+earned)}>{earned}</a></td>
                                 <td>{total}</td>
-                                <td>{(earned/total*100).toFixed(2) == NaN ? "" : (earned/total*100).toFixed(2)}</td>
+                                <td>{(earned == "*" || total == 0) ? "" : (earned/total*100).toFixed(2)}</td>
                             </tr>
                         )
                     })
