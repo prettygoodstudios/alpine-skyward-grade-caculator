@@ -5,4 +5,12 @@ $primary-color: #2574a9;
 
 html, body{
     color: $dark-text-color;
+    font-family: Avenir;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+table{
+    border-collapse: collapse;
 }

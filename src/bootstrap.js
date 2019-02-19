@@ -9,7 +9,6 @@ import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
-import 'bootstrap/dist/css/bootstrap.css';
 import './style/main.scss';
 
 

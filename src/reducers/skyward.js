@@ -18,17 +18,20 @@ export default function(state = INIT_STATE, action){
                 course: action.payload
             }
         case UPDATE_GRADE:
-            const {categoryIndex, assignmentIndex, earned} = action.payload;
-            let {grades} = this.state;
-            let {course} = this.state;
+            const {categoryIndex, assignmentIndex, earned, delta, deltaTotal} = action.payload;
+            let {grades} = state;
+            let {course} = state;
             let courseIndex = 0;
             grades.forEach((c, i) => {
                 if(c.info.period == course.info.period){
                     courseIndex = i;
                 }
             });
-            course.report[categoryIndex].assingments[assignmentIndex].score.earned = earned;
-            grades[courseIndex].report[categoryIndex].assingments[assignmentIndex].score.earned = earned;
+            console.log(state);
+            course.report[categoryIndex].assignments[assignmentIndex].score.earned = earned;
+            grades[courseIndex].report[categoryIndex].assignments[assignmentIndex].score.earned = earned;
+            course.report[categoryIndex].score.earned += delta;
+            course.report[categoryIndex].score.total += deltaTotal;
             return {
                 ...state,
                 grades,

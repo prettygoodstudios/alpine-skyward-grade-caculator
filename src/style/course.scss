@@ -51,3 +51,31 @@
         }
     }
 }
+
+.assignment-modal{
+
+    &__label{
+        width: 100%;
+        text-align: center;
+    }
+
+    &__error{
+        width: 460px !important;
+        margin-top: 20px;
+        font-size: 0.8em !important;
+    }
+
+    &__grade-input{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        input{
+            max-width: 100px;
+        }
+        span{
+            font-size: 1.4em;
+            margin-left: 10px;
+        }
+    }
+}

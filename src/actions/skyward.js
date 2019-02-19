@@ -22,11 +22,12 @@ export const getGrades = (term, userId, password, success) => {
     }
 }
 
-export const updateGrade = ({course, categoryIndex, assignmentIndex, delta, result}) => {
+export const updateGrade = ({course, categoryIndex, assignmentIndex, delta, deltaTotal, result}) => {
     return function(dispatch){
         const {report} = course;
         const assignment = report[categoryIndex].assignments[assignmentIndex];
-        if(assignment.score.earned + delta < 0){
+        const currentEarned = assignment.score.earned == "*" ? 0 : parseFloat(assignment.score.earned);
+        if(currentEarned + delta < 0){
             result("You can not enter a score less than 0.");
         }else{
             dispatch({
@@ -34,7 +35,9 @@ export const updateGrade = ({course, categoryIndex, assignmentIndex, delta, resu
                 payload: {
                     categoryIndex,
                     assignmentIndex,
-                    earned: assignment.score.earned + delta
+                    earned: currentEarned + delta,
+                    delta,
+                    deltaTotal
                 }
             });
             result("Updated");
