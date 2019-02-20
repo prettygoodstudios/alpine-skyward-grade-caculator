@@ -86,7 +86,7 @@ class CourseScreen extends Component{
         this.setState({
             gradeModalAssignment: assignmentIndex,
             gradeModalCategory: categoryIndex,
-            gradeModalEarned: earned,
+            gradeModalEarned: earned.toString(),
             gradeModalTotal: total,
             gradeModalVisible: true
         })
@@ -98,7 +98,8 @@ class CourseScreen extends Component{
             gradeModalCategory: 0,
             gradeModalEarned: 0,
             gradeModalTotal: 0,
-            gradeModalVisible: false
+            gradeModalVisible: false,
+            error: ""
         })
     }
 
@@ -142,7 +143,7 @@ class CourseScreen extends Component{
                 <h3>Grade: {calculateGrade(report)}%</h3>
                 <h3>Period: {period}</h3>
                 <h3>{instructor}</h3>
-                <a onClick={() => history.push("/grades")} className="back-button">Return To Schedule</a>
+                <a onClick={() => history.push("/grades")} className="button">Return To Schedule</a>
                 {   report.map((cat, i) => {
                         if(!cat.score.earned){
                             return <div></div>;

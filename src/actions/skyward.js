@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_GRADES, GET_COURSE, UPDATE_GRADE} from "./types";
+import {GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES} from "./types";
 //import skyward  from 'skyward-rest';
 
 
@@ -50,6 +50,13 @@ export const getCourse = (course) => {
     return {
         type: GET_COURSE,
         payload: course
+    }
+}
+
+export const clearGrades = () => {
+    return{
+        type: CLEAR_GRADES,
+        payload: {}
     }
 }
 

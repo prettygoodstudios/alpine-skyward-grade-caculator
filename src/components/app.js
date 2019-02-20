@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className="push">
+        <div className="push" >
           <Router history={history}>
             <Switch>
               <Route exact path="/" component={LoginScreen} />
@@ -21,9 +21,9 @@ export default class App extends Component {
             </Switch>
           </Router>
         </div>
-        <div className="footer">
+        <div className="footer" >
           <h3>Alpine School District</h3>
-          <h5>Grade Calculator</h5>
+          <h4>Grade Calculator</h4>
           <p>V1.0 - Miguel Rust</p>
         </div>
       </div>

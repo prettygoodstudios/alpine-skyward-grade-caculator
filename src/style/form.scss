@@ -23,6 +23,26 @@ button{
     &:hover{
         color: $primary-color;
         background-color: $white-color;
+        cursor: grab;
+    }
+}
+
+.button{
+    background-color: $primary-color;
+    color: $white-color;
+    display: block;
+    padding: 10px;
+    font-size:  $form-text-size;
+    border: none;
+    margin: 10px 0px 10px 0px;
+    border: 4px solid $primary-color;
+    max-width: 200px;
+    text-align: center;
+
+    &:hover{
+        color: $primary-color;
+        background-color: $white-color;
+        cursor: grab;
     }
 }
 

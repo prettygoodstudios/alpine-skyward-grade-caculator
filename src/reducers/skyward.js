@@ -1,4 +1,4 @@
-import { GET_GRADES, GET_COURSE, UPDATE_GRADE } from "../actions/types";
+import { GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES } from "../actions/types";
 
 const INIT_STATE = {
     grades: {},
@@ -8,6 +8,11 @@ const INIT_STATE = {
 export default function(state = INIT_STATE, action){
     switch(action.type){
         case GET_GRADES:
+            return {
+                ...state,
+                grades: action.payload
+            }
+        case CLEAR_GRADES:
             return {
                 ...state,
                 grades: action.payload

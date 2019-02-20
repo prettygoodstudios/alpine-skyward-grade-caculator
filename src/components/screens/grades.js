@@ -15,6 +15,11 @@ class GradesScreen extends Component {
         history.push("/course");
     }
 
+    logOut = () => {
+        this.props.clearGrades();
+        history.push("/");
+    }
+
     render(){
         const {grades} = this.props;
 
@@ -53,6 +58,7 @@ class GradesScreen extends Component {
                         </tr>
                     </tfoot>
                 </table>
+                <center><a onClick={this.logOut} className="button">Log Out!</a></center>
             </div>
         );
     }
