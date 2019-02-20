@@ -106,9 +106,16 @@ class CourseScreen extends Component{
     submitGradeModal = () => {
         const {gradeModalAssignment, gradeModalCategory, gradeModalEarned, gradeModalTotal} = this.state;
         if(parseFloat(gradeModalEarned) < 0 || !(gradeModalEarned.match(/^[0-9]+$/) != null) ){
-            this.setState({
-                error: "You must provide a number greater than or equal to 0."
-            });
+            if(gradeModalEarned != "*"){
+                this.setState({
+                    error: "You must provide a number greater than or equal to 0."
+                });
+            }else{
+                const currentEarned = this.props.report[gradeModalCategory].assignments[gradeModalAssignment].score.earned;
+                const currentTotal = this.props.report[gradeModalCategory].assignments[gradeModalAssignment].score.total;
+                const delta = currentEarned == "*" ? 0 : 0 - parseFloat(currentEarned);
+                this.props.updateGrade({course: this.props, categoryIndex: gradeModalCategory, assignmentIndex: gradeModalAssignment, result: this.clearGradeModal, delta, deltaTotal: currentEarned == "*" ? 0 : -currentTotal});
+            }
         }else{
             const currentEarned = this.props.report[gradeModalCategory].assignments[gradeModalAssignment].score.earned;
             const delta = currentEarned == "*" ? parseFloat(gradeModalEarned) : parseFloat(gradeModalEarned) - parseFloat(currentEarned);

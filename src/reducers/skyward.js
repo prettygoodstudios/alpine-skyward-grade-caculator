@@ -35,6 +35,10 @@ export default function(state = INIT_STATE, action){
             console.log(state);
             course.report[categoryIndex].assignments[assignmentIndex].score.earned = earned;
             grades[courseIndex].report[categoryIndex].assignments[assignmentIndex].score.earned = earned;
+            if(deltaTotal < 0){
+                course.report[categoryIndex].assignments[assignmentIndex].score.earned = "*";
+                grades[courseIndex].report[categoryIndex].assignments[assignmentIndex].score.earned = "*";
+            }
             course.report[categoryIndex].score.earned += delta;
             course.report[categoryIndex].score.total += deltaTotal;
             return {
