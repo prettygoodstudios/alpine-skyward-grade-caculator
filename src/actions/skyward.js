@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES} from "./types";
+import {GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES, ADD_ASSIGNMENT} from "./types";
 //import skyward  from 'skyward-rest';
 
 
@@ -41,6 +41,29 @@ export const updateGrade = ({course, categoryIndex, assignmentIndex, delta, delt
                 }
             });
             result("Updated");
+        }
+    }
+}
+
+export const addAssignment = ({categoryIndex, assignment, result}) => {
+    return function(dispatch){
+        const {date, title, score} = assignment;
+        const {earned, total} = score;
+        if(earned >= 0 && total >= 0){
+            if(date && title.length > 3){
+                dispatch({
+                    type: ADD_ASSIGNMENT,
+                    payload: {
+                        categoryIndex,
+                        assignment
+                    }
+                });
+                result("Successfully added assignment.");
+            }else{
+                result("You must provide a valid date and a title greater than 3 characters long.");
+            }
+        }else{
+            result("You must enter a score greater than or equal to 0 and enter in a total greater than or equal to 0.");
         }
     }
 }

@@ -1,1 +1,1 @@
-export {getGrades, getCourse, updateGrade, clearGrades} from "./skyward";
+export {getGrades, getCourse, updateGrade, clearGrades, addAssignment} from "./skyward";

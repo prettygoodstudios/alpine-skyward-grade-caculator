@@ -1,4 +1,4 @@
-import { GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES } from "../actions/types";
+import { GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES, ADD_ASSIGNMENT } from "../actions/types";
 
 const INIT_STATE = {
     grades: {},
@@ -21,6 +21,27 @@ export default function(state = INIT_STATE, action){
             return {
                 ...state,
                 course: action.payload
+            }
+        case ADD_ASSIGNMENT:
+            const {categoryIndex: catIndex, assignment} = action.payload;
+            let grades2 = state.grades;
+            let course2 = state.course;
+            //course2.report[catIndex].assignments.push(assignment);
+            let cIndex = 0;
+            grades2.forEach((c, i) => {
+                if(c.info.period == course2.info.period){
+                    cIndex = i;
+                }
+            });
+            grades2[cIndex].report[catIndex].assignments.push(assignment);
+            //course2.report[catIndex].score.earned += assignment.score.earned;
+            //course2.report[catIndex].score.total += assignment.score.total;
+            grades2[cIndex].report[catIndex].score.earned += assignment.score.earned;
+            grades2[cIndex].report[catIndex].score.total += assignment.score.total;
+            return{
+                ...state,
+                course: course2,
+                grades: grades2
             }
         case UPDATE_GRADE:
             const {categoryIndex, assignmentIndex, earned, delta, deltaTotal} = action.payload;
