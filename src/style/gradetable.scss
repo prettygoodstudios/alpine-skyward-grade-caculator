@@ -38,7 +38,32 @@
     }
 }
 
-.course-container{
-    max-width: 500px;
-    margin: 100px auto 0px auto;
+
+@media only screen and (max-width: 520px){
+    .grade-table{
+        width: 90vw;
+        margin: auto;
+        thead{
+            tr{
+                th:nth-child(3){
+                    display: none;
+                }
+            }
+        }
+        tfoot{
+            tr{
+                th:nth-child(3){
+                    display: none;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td:nth-child(3){
+                    display: none;
+                }
+            }
+        }
+    }
 }
+

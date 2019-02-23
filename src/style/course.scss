@@ -79,3 +79,48 @@
         }
     }
 }
+
+@media only screen and (max-width: 540px){
+    .grade-container{
+        max-width: 90vw;
+    }
+    .assignment-table{
+        thead{
+            tr{
+                th:nth-child(1){
+                    display: none;
+                }
+            }
+        }
+        tfoot{
+            tr{
+                th:nth-child(1){
+                    display: none;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td:nth-child(1){
+                    display: none;
+                }
+            }
+        }
+    }
+    .assignment-modal{
+        &__label{
+            width: 100%;
+            text-align: center;
+        }
+    
+        &__error{
+            width: 200px !important;
+            margin-top: 20px;
+            font-size: 0.8em !important;
+        }
+
+        input{
+            width: 200px;
+        }
+    }
+}
