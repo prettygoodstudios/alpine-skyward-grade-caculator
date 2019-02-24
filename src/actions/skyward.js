@@ -3,10 +3,11 @@ import {GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES, ADD_ASSIGNMENT} from
 //import skyward  from 'skyward-rest';
 
 
+
+
 export const getGrades = (term, userId, password, success) => {
-    console.log("Hello World");
     return function(dispatch){
-        axios.post("http://localhost:3010", {term: term, username: userId, password}).then(({data}) => {
+        axios.post(process.env.ROOT_BACK_END_URL, {term: term, username: userId, password}).then(({data}) => {
             if(!data.error){
                 dispatch({
                     type: GET_GRADES,

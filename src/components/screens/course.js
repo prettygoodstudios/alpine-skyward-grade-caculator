@@ -11,7 +11,7 @@ import Error from "../widgets/error";
 
 const Category = ({category, weight, score, assignments, remainingWeight, setGradeModal, index, setAssignmentModal}) => {
     return(
-        <div>
+        <div key={index}>
             <table className="category-header">
                 <span>
                     {category}
@@ -38,7 +38,7 @@ const Category = ({category, weight, score, assignments, remainingWeight, setGra
                         const {date, title, score} = a;
                         const {earned, total} = score;
                         return(
-                            <tr>
+                            <tr key={i}>
                                 <td>{date}</td>
                                 <td>{title}</td>
                                 <td><a onClick={() => setGradeModal({assignmentIndex: i, categoryIndex: index, earned, total})}>{earned}</a></td>

@@ -5,6 +5,9 @@ const webpackCommon = require('./common.config');
 const env = require('../env');
 const proxyRules = require('../proxy/rules');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 // webpack plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
@@ -60,7 +63,8 @@ module.exports = webpackMerge(webpackCommon, {
   plugins: [
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: "'development'"
+        NODE_ENV: "'development'",
+        ROOT_BACK_END_URL: `'${process.env.ROOT_BACK_END_URL}'`
       }
     }),
     new HtmlWebpackPlugin({
