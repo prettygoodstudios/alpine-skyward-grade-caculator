@@ -11,6 +11,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = webpackMerge(webpackCommon, {
 
@@ -100,7 +102,8 @@ module.exports = webpackMerge(webpackCommon, {
     }),
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"production"',
+        ROOT_BACK_END_URL: `'${process.env.ROOT_BACK_END_URL}'`
       }
     }),
     new ExtractTextPlugin('[name]-[chunkhash].min.css'),
