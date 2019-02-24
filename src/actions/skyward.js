@@ -6,6 +6,7 @@ import {GET_GRADES, GET_COURSE, UPDATE_GRADE, CLEAR_GRADES, ADD_ASSIGNMENT} from
 
 
 export const getGrades = (term, userId, password, success) => {
+    console.log(process.env);
     return function(dispatch){
         axios.post(process.env.ROOT_BACK_END_URL, {term: term, username: userId, password}).then(({data}) => {
             if(!data.error){
