@@ -24,13 +24,13 @@ class LoginScreen extends Component {
         this.setState(x);
     }
 
-    finished = (success) => {
+    finished = ({success, error}) => {
         this.setState({loading: false});
         if(success){
             this.setState({error: ""});
             history.push("/grades");
         }else{
-            this.setState({error: "Incorrect Credentials"});
+            this.setState({error});
         }
     }
 

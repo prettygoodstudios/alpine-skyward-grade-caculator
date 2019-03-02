@@ -14,12 +14,12 @@ export const getGrades = (term, userId, password, success) => {
                     type: GET_GRADES,
                     payload: data
                 });
-                success(true);
+                success({success: true});
             }else{
-                success(false);
+                success({success: false, error: data.error});
             }
         }).catch((e) => {
-            success(false);
+            success({success: false, error: data.error});
         });
     }
 }
