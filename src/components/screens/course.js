@@ -162,7 +162,7 @@ class CourseScreen extends Component{
 
     submitGradeModal = () => {
         const {gradeModalAssignment, gradeModalCategory, gradeModalEarned, gradeModalTotal} = this.state;
-        if(parseFloat(gradeModalEarned) < 0 || !(gradeModalEarned.match(/^[0-9]+$/) != null) ){
+        if(parseFloat(gradeModalEarned) < 0 || (!(gradeModalEarned.match(/^[0-9]+$/) != null) && gradeModalEarned.indexOf(".") == -1) ){
             if(gradeModalEarned != "*"){
                 this.setState({
                     error: "You must provide a number greater than or equal to 0."

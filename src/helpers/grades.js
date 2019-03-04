@@ -9,8 +9,8 @@ export const calculateGrade = (report) => {
     let flagForMissingWeight = false;
     let missingWieghtValue = 0;
     report.forEach((cat) => {
-        if(Number.isInteger(cat.weight)){
-            tot += parseInt(cat.weight);
+        if(Number.isFinite(cat.weight)){
+            tot += parseFloat(cat.weight);
         }
         if(cat.weight == "00"){
             flagForMissingWeight = true;
@@ -23,14 +23,14 @@ export const calculateGrade = (report) => {
     const trueTotalWieght = tot;
     let totalPoints = 0;
     report.forEach((b) => { 
-        if(Number.isInteger(b.score.total)){
+        if(Number.isFinite(b.score.total)){
             totalPoints += parseFloat(b.score.total);
         }
     });
     report.forEach((cat) => {
         const {weight, score} = cat;
         const {earned, total} = score;
-        let trueWeight = Number.isInteger(weight) ? (parseInt(weight)/trueTotalWieght) : total/totalPoints;
+        let trueWeight = Number.isFinite(weight) ? (parseFloat(weight)/trueTotalWieght) : total/totalPoints;
         if(flagForMissingWeight && weight == "00"){
             trueWeight = (missingWieghtValue/trueTotalWieght);
         }
