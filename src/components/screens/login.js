@@ -14,7 +14,8 @@ class LoginScreen extends Component {
             username: "",
             password: "",
             loading: false,
-            error: ""
+            error: "",
+            term: "Q1"
         }
     }
 
@@ -37,14 +38,14 @@ class LoginScreen extends Component {
     getGrades = (term, username, password) => {
         this.setState({loading: true});
         if(username != "" && password != ""){
-            this.props.getGrades("Q3", username, password, (response) => this.finished(response));
+            this.props.getGrades(term, username, password, (response) => this.finished(response));
         }else{
             this.setState({error: "You must provide a username and password", loading: false});
         }
     }
 
     render(){
-        const {username, password, loading, error} = this.state;
+        const {username, password, loading, error, term} = this.state;
         if(loading){
             return(
                 <div className="login-form">
@@ -61,7 +62,14 @@ class LoginScreen extends Component {
                 <input type="text" name="username" id="username" value={username} onChange={this.updateInput}/>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" value={password} onChange={this.updateInput}/>
-                <button onClick={() => this.getGrades("Q3", username, password)}>Log In</button>
+                <label for="term">Term</label>
+                <select name="term" id="term" value={term} onChange={this.updateInput}>
+                    <option name="Q1" value="Q1">Term 1</option>
+                    <option name="Q2" value="Q2">Term 2</option>
+                    <option name="Q3" value="Q3">Term 3</option>
+                    <option name="Q4" value="Q4">Term 4</option>
+                </select>
+                <button onClick={() => this.getGrades(term, username, password)}>Log In</button>
                 <Error error={error}/>
             </div>
         )
