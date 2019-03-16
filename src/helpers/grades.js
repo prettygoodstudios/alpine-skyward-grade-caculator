@@ -20,6 +20,11 @@ export const calculateGrade = (report) => {
         missingWieghtValue = 100 - tot;
         tot = 100;
     }
+    report.forEach((cat) => {
+	if(!cat.score.total){
+	  tot -= cat.weight;
+	}
+    });
     const trueTotalWieght = tot;
     let totalPoints = 0;
     report.forEach((b) => { 
