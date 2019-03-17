@@ -83,6 +83,12 @@ class CourseScreen extends Component{
         }   
     }
 
+    componentDidMount(){
+        if(!this.props.report){
+            history.push("/");
+        }
+    }
+
     updateGradeInput = (e) => {
         this.setState({
             gradeModalEarned: e.target.value
@@ -183,6 +189,9 @@ class CourseScreen extends Component{
     render(){
         const {info, report} = this.props;
         const {gradeModalVisible, gradeModalEarned, gradeModalAssignment, gradeModalTotal, gradeModalCategory, error, assignmentModalVisible, assignmentModalTitle, assignmentModalScore, assignmentModalTotal, assignmentModalDate} = this.state;
+        if(!info || !report){
+            return <div></div>;
+        }
         const {course, period, instructor} = info;
         let categoryWeights = 0;
         report.forEach((cat) => {
@@ -228,7 +237,7 @@ class CourseScreen extends Component{
                 <h3>Period: {period}</h3>
                 <h3>{instructor}</h3>
                 <a onClick={() => history.push("/grades")} className="button">Return To Schedule</a>
-                {   report.map((cat, i) => {
+                {   report[0] && report.map((cat, i) => {
                         if(!cat.score.earned){
                             return <div></div>;
                         }

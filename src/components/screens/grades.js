@@ -10,6 +10,13 @@ import history from '../../../history';
 class GradesScreen extends Component {
 
 
+    componentDidMount(){
+        if(!this.props.grades[0]){
+            console.log("Not Permitted");
+            history.push("/");
+        }
+    }
+
     getCourse = (course) => {
         this.props.getCourse(course);
         history.push("/course");
@@ -22,7 +29,6 @@ class GradesScreen extends Component {
 
     render(){
         const {grades} = this.props;
-
         return(
             <div className="grade-container">
                 <h1>My Grades</h1>
@@ -36,7 +42,7 @@ class GradesScreen extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {grades.map((g, i) => {
+                        {grades[0] && grades.map((g, i) => {
                             const {info, report} = g;
                             const {course, period, instructor} = info;
                             return(

@@ -15,7 +15,8 @@ export default function(state = INIT_STATE, action){
         case CLEAR_GRADES:
             return {
                 ...state,
-                grades: action.payload
+                grades: action.payload,
+                course: {}
             }
         case GET_COURSE:
             return {
